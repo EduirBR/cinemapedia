@@ -6,10 +6,12 @@ RouteBase addRoute(
     {required String path,
     required String name,
     Widget? view,
-    GoRouterPageBuilder? builder}) {
+    GoRouterPageBuilder? builder,
+    List<RouteBase> childRoutes = const <RouteBase>[]}) {
   return GoRoute(
     name: name,
     path: path,
+    routes: childRoutes,
     // builder: (context, state) => view, // this is the default way
     pageBuilder: builder ??
         (context, state) {
@@ -20,6 +22,8 @@ RouteBase addRoute(
         },
   );
 }
+
+// RouteBase addNestedRoute()
 
 ///Transition build if needed
 CustomTransitionPage<dynamic> customTransitionBuild(Widget view) {
